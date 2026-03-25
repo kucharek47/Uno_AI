@@ -125,7 +125,19 @@ class gra:
 
         return False
 
-    def zagraj_karte(self, id_gracza, indeks_karty, wybrany_kolor=None, krzyk_uno=False):
+    def krzycz_uno(self, id_gracza):
+        if len(self.ranking) >= len(self.gracze) - 1:
+            return False
+
+        if id_gracza != self.aktualny_gracz:
+            return False
+
+        g = self.gracze[id_gracza]
+        g.zglasza_uno = True
+        self.dodaj_log(f"Gracz {id_gracza} krzyczy UNO!")
+        return True
+
+    def zagraj_karte(self, id_gracza, indeks_karty, wybrany_kolor=None):
         if len(self.ranking) >= len(self.gracze) - 1:
             return False
 
@@ -145,11 +157,7 @@ class gra:
         info_kolor = f" (wybrano: {wybrany_kolor})" if wybrany_kolor else ""
         self.dodaj_log(f"Gracz {id_gracza} rzucil: {k}{info_kolor}")
 
-        if len(g.reka) == 1:
-            g.zglasza_uno = krzyk_uno
-            if krzyk_uno:
-                self.dodaj_log(f"Gracz {id_gracza} krzyczy UNO!")
-        else:
+        if len(g.reka) > 1:
             g.zglasza_uno = False
 
         if len(g.reka) == 0:
@@ -335,34 +343,77 @@ class srodowisko_uno:
         self.silnik = gra(self.liczba_graczy)
         return self.pobierz_stan(self.silnik.aktualny_gracz)
 
-    def wykonaj_krok(self, id_gracza, typ_akcji, indeks_karty=None, wybrany_kolor=None, krzyk_uno=False, id_celu=None):
+    def _znajdz_indeks_karty(self, id_gracza, id_typu_karty):
+        g = self.silnik.gracze[id_gracza]
+        for i, k in enumerate(g.reka):
+            if self._karta_na_indeks(k) == id_typu_karty:
+                return i
+        return -1
+
+    def _dekoduj_akcje(self, id_gracza, numer_akcji):
+        if numer_akcji < 52:
+            indeks = self._znajdz_indeks_karty(id_gracza, numer_akcji)
+            return 'zagraj', indeks, None, None
+
+        elif numer_akcji < 56:
+            indeks = self._znajdz_indeks_karty(id_gracza, 52)
+            kolory = ['czerwony', 'zielony', 'niebieski', 'zolty']
+            return 'zagraj', indeks, kolory[numer_akcji - 52], None
+
+        elif numer_akcji < 60:
+            indeks = self._znajdz_indeks_karty(id_gracza, 53)
+            kolory = ['czerwony', 'zielony', 'niebieski', 'zolty']
+            return 'zagraj', indeks, kolory[numer_akcji - 56], None
+
+        elif numer_akcji == 60:
+            return 'dobierz', None, None, None
+
+        elif numer_akcji == 61:
+            return 'krzycz_uno', None, None, None
+
+        elif numer_akcji < 65:
+            offset = (numer_akcji - 61)
+            id_celu = (id_gracza + offset) % self.liczba_graczy
+            return 'zglos_brak_uno', None, None, id_celu
+
+        return None, None, None, None
+
+    def wykonaj_krok(self, id_gracza, numer_akcji):
         nagroda = 0
         kara_poczatkowa = self.silnik.aktualna_kara
         ilosc_kart_przed = len(self.silnik.gracze[id_gracza].reka)
 
+        typ_akcji, indeks_karty, wybrany_kolor, id_celu = self._dekoduj_akcje(id_gracza, numer_akcji)
+
         if typ_akcji == 'zagraj':
-            sukces = self.silnik.zagraj_karte(id_gracza, indeks_karty, wybrany_kolor, krzyk_uno)
+            if indeks_karty == -1:
+                nagroda += self.kary_lokalne['nielegalny_ruch']
+                return self.pobierz_stan(id_gracza), nagroda, False
+
+            sukces = self.silnik.zagraj_karte(id_gracza, indeks_karty, wybrany_kolor)
             if not sukces:
                 nagroda += self.kary_lokalne['nielegalny_ruch']
                 return self.pobierz_stan(id_gracza), nagroda, False
 
             nagroda += self.kary_lokalne['zrzucenie_karty']
-
             if self.silnik.aktualna_kara > kara_poczatkowa:
                 nagroda += self.kary_lokalne['wymuszenie_kary']
-
-            if krzyk_uno and len(self.silnik.gracze[id_gracza].reka) == 1:
-                nagroda += self.kary_lokalne['poprawne_uno']
 
         elif typ_akcji == 'dobierz':
             if self.silnik.aktualna_kara > 0:
                 self.silnik.rozlicz_kare(id_gracza, uzyj_ratunku=True)
             else:
                 self.silnik.dobierz_z_talii(id_gracza)
-
             nagroda += self.kary_lokalne['dobranie_karty']
 
-        elif typ_akcji == 'zglos_uno':
+        elif typ_akcji == 'krzycz_uno':
+            if ilosc_kart_przed <= 2:
+                self.silnik.krzycz_uno(id_gracza)
+                nagroda += self.kary_lokalne['poprawne_uno']
+            else:
+                nagroda += self.kary_lokalne['nielegalny_ruch']
+
+        elif typ_akcji == 'zglos_brak_uno':
             sukces = self.silnik.zglos_brak_uno(id_celu)
             if sukces:
                 nagroda += self.kary_lokalne['zlapany_brak_uno']
