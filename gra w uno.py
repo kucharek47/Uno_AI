@@ -62,9 +62,13 @@ class gra:
         self.aktualny_kolor = None
         self.aktualna_kara = 0
         self.ranking = []
+        self.logi = []
 
         self.rozdaj()
         self.rozpocznij()
+
+    def dodaj_log(self, wiadomosc):
+        self.logi.append(wiadomosc)
 
     def pobierz_karte(self):
         k = self.talia_gry.dobierz()
@@ -75,6 +79,7 @@ class gra:
                 self.talia_gry.tasuj()
                 self.stos = [ostatnia_karta]
                 k = self.talia_gry.dobierz()
+                self.dodaj_log("Przetasowano stos do nowej talii.")
         return k
 
     def rozdaj(self):
@@ -83,6 +88,7 @@ class gra:
                 nowa_karta = self.pobierz_karte()
                 if nowa_karta:
                     g.dobierz_karte(nowa_karta)
+        self.dodaj_log("Rozdano karty graczom.")
 
     def rozpocznij(self):
         pierwsza_karta = self.pobierz_karte()
@@ -94,6 +100,7 @@ class gra:
         if pierwsza_karta:
             self.stos.append(pierwsza_karta)
             self.aktualny_kolor = pierwsza_karta.kolor
+            self.dodaj_log(f"Gra rozpoczeta. Pierwsza karta: {pierwsza_karta}")
 
     def nastepny_gracz(self):
         if len(self.ranking) >= len(self.gracze) - 1:
@@ -129,22 +136,30 @@ class gra:
         k = g.reka[indeks_karty]
 
         if not self.waliduj_ruch(k):
+            self.dodaj_log(f"Gracz {id_gracza} probowal wykonac nielegalny ruch: {k}")
             return False
 
         k = g.rzuc_karte(indeks_karty)
         self.stos.append(k)
 
+        info_kolor = f" (wybrano: {wybrany_kolor})" if wybrany_kolor else ""
+        self.dodaj_log(f"Gracz {id_gracza} rzucil: {k}{info_kolor}")
+
         if len(g.reka) == 1:
             g.zglasza_uno = krzyk_uno
+            if krzyk_uno:
+                self.dodaj_log(f"Gracz {id_gracza} krzyczy UNO!")
         else:
             g.zglasza_uno = False
 
         if len(g.reka) == 0:
             self.ranking.append(id_gracza)
+            self.dodaj_log(f"Gracz {id_gracza} konczy na miejscu {len(self.ranking)}")
             if len(self.ranking) == len(self.gracze) - 1:
                 for ost in self.gracze:
                     if ost.id_gracza not in self.ranking:
                         self.ranking.append(ost.id_gracza)
+                        self.dodaj_log(f"Gracz {ost.id_gracza} przegrywa (ostatnie miejsce)")
                         break
 
         if k.kolor:
@@ -163,13 +178,16 @@ class gra:
         aktywni = len(self.gracze) - len(self.ranking)
         if k.wartosc == 'zmiana_kierunku':
             self.kierunek *= -1
+            self.dodaj_log("Zmiana kierunku gry.")
             if aktywni == 2:
                 self.nastepny_gracz()
         elif k.wartosc == 'stop':
+            self.dodaj_log("Zablokowano kolejke nastepnego gracza.")
             self.nastepny_gracz()
         elif k.wartosc in ['+2', '+4']:
             wartosc_kary = int(k.wartosc[1:])
             self.aktualna_kara += wartosc_kary
+            self.dodaj_log(f"Kara wzrasta. Do dobrania: {self.aktualna_kara} kart.")
 
     def rozlicz_kare(self, id_gracza, uzyj_ratunku=False):
         if len(self.ranking) >= len(self.gracze) - 1:
@@ -181,21 +199,26 @@ class gra:
         g = self.gracze[id_gracza]
 
         if uzyj_ratunku:
+            self.dodaj_log(f"Gracz {id_gracza} szuka karty ratunkowej.")
             nowa_karta = self.pobierz_karte()
             if nowa_karta:
                 g.dobierz_karte(nowa_karta)
+                self.dodaj_log(f"Gracz {id_gracza} dociagnal: {nowa_karta}")
 
             if nowa_karta and nowa_karta.wartosc in ['+2', '+4']:
+                self.dodaj_log(f"Gracz {id_gracza} znalazl ratunek!")
                 return True
 
             for _ in range(self.aktualna_kara - 1):
                 k = self.pobierz_karte()
                 if k:
                     g.dobierz_karte(k)
+            self.dodaj_log(f"Brak ratunku. Gracz {id_gracza} przyjal lacznie {self.aktualna_kara} kart kary.")
             self.aktualna_kara = 0
             self.nastepny_gracz()
             return False
 
+        self.dodaj_log(f"Gracz {id_gracza} akceptuje kare {self.aktualna_kara} kart.")
         for _ in range(self.aktualna_kara):
             k = self.pobierz_karte()
             if k:
@@ -216,6 +239,7 @@ class gra:
         nowa_karta = self.pobierz_karte()
         if nowa_karta:
             g.dobierz_karte(nowa_karta)
+            self.dodaj_log(f"Gracz {id_gracza} dobral karte ze stosu.")
 
         self.nastepny_gracz()
         return True
@@ -226,6 +250,7 @@ class gra:
 
         g = self.gracze[id_celu]
         if len(g.reka) == 1 and not g.zglasza_uno:
+            self.dodaj_log(f"Zlapano gracza {id_celu} na braku UNO. Dostaje 2 karty.")
             for _ in range(2):
                 nowa_karta = self.pobierz_karte()
                 if nowa_karta:
