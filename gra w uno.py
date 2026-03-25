@@ -257,3 +257,132 @@ class gra:
                     g.dobierz_karte(nowa_karta)
             return True
         return False
+
+
+class srodowisko_uno:
+    def __init__(self, liczba_graczy):
+        self.liczba_graczy = liczba_graczy
+        self.silnik = gra(liczba_graczy)
+        self.kary_lokalne = {
+            'nielegalny_ruch': -10,
+            'zrzucenie_karty': 25,
+            'dobranie_karty': -10,
+            'wymuszenie_kary': 75,
+            'poprawne_uno': 50,
+            'zlapany_brak_uno': 75,
+            'zapomniane_uno': -100
+        }
+
+    def _karta_na_indeks(self, k):
+        if k.kolor is None:
+            if k.wartosc == 'zmiana_koloru':
+                return 52
+            if k.wartosc == '+4':
+                return 53
+
+        kolory = ['czerwony', 'zielony', 'niebieski', 'zolty']
+        wartosci = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'stop', 'zmiana_kierunku', '+2']
+
+        baza = kolory.index(k.kolor) * 13
+        offset = wartosci.index(k.wartosc)
+        return baza + offset
+
+    def pobierz_stan(self, id_gracza):
+        stan = []
+        g = self.silnik.gracze[id_gracza]
+
+        reka_wektor = [0] * 54
+        for k in g.reka:
+            idx = self._karta_na_indeks(k)
+            reka_wektor[idx] += 1
+        stan.extend(reka_wektor)
+
+        stos_wektor = [0] * 54
+        if self.silnik.stos:
+            idx = self._karta_na_indeks(self.silnik.stos[-1])
+            stos_wektor[idx] = 1
+        stan.extend(stos_wektor)
+
+        kolory = ['czerwony', 'zielony', 'niebieski', 'zolty']
+        kolor_wektor = [0] * 4
+        if self.silnik.aktualny_kolor in kolory:
+            kolor_wektor[kolory.index(self.silnik.aktualny_kolor)] = 1
+        stan.extend(kolor_wektor)
+
+        stan.append(self.silnik.aktualna_kara)
+        stan.append(self.silnik.kierunek)
+
+        for i in range(1, self.liczba_graczy):
+            idx_przeciwnika = (id_gracza + i) % self.liczba_graczy
+            przeciwnik = self.silnik.gracze[idx_przeciwnika]
+            stan.append(len(przeciwnik.reka))
+            stan.append(1 if przeciwnik.zglasza_uno else 0)
+
+        return stan
+
+    def oblicz_nagrode_koncowa(self, miejsce):
+        if miejsce == self.liczba_graczy:
+            return -1000
+
+        if self.liczba_graczy > 2:
+            wspolczynnik = -500
+            baza = 1500
+            return wspolczynnik * miejsce + baza
+
+        return 1000
+
+    def resetuj(self):
+        self.silnik = gra(self.liczba_graczy)
+        return self.pobierz_stan(self.silnik.aktualny_gracz)
+
+    def wykonaj_krok(self, id_gracza, typ_akcji, indeks_karty=None, wybrany_kolor=None, krzyk_uno=False, id_celu=None):
+        nagroda = 0
+        kara_poczatkowa = self.silnik.aktualna_kara
+        ilosc_kart_przed = len(self.silnik.gracze[id_gracza].reka)
+
+        if typ_akcji == 'zagraj':
+            sukces = self.silnik.zagraj_karte(id_gracza, indeks_karty, wybrany_kolor, krzyk_uno)
+            if not sukces:
+                nagroda += self.kary_lokalne['nielegalny_ruch']
+                return self.pobierz_stan(id_gracza), nagroda, False
+
+            nagroda += self.kary_lokalne['zrzucenie_karty']
+
+            if self.silnik.aktualna_kara > kara_poczatkowa:
+                nagroda += self.kary_lokalne['wymuszenie_kary']
+
+            if krzyk_uno and len(self.silnik.gracze[id_gracza].reka) == 1:
+                nagroda += self.kary_lokalne['poprawne_uno']
+
+        elif typ_akcji == 'dobierz':
+            if self.silnik.aktualna_kara > 0:
+                self.silnik.rozlicz_kare(id_gracza, uzyj_ratunku=True)
+            else:
+                self.silnik.dobierz_z_talii(id_gracza)
+
+            nagroda += self.kary_lokalne['dobranie_karty']
+
+        elif typ_akcji == 'zglos_uno':
+            sukces = self.silnik.zglos_brak_uno(id_celu)
+            if sukces:
+                nagroda += self.kary_lokalne['zlapany_brak_uno']
+            else:
+                nagroda += self.kary_lokalne['nielegalny_ruch']
+
+        ilosc_kart_po = len(self.silnik.gracze[id_gracza].reka)
+        if ilosc_kart_po > ilosc_kart_przed + 1:
+            nagroda += self.kary_lokalne['zapomniane_uno']
+
+        czy_koniec = False
+        if id_gracza in self.silnik.ranking:
+            miejsce = self.silnik.ranking.index(id_gracza) + 1
+            nagroda += self.oblicz_nagrode_koncowa(miejsce)
+            czy_koniec = True
+
+        if len(self.silnik.ranking) >= self.liczba_graczy - 1:
+            ostatni = [g.id_gracza for g in self.silnik.gracze if g.id_gracza not in self.silnik.ranking]
+            if id_gracza in ostatni:
+                nagroda += self.oblicz_nagrode_koncowa(self.liczba_graczy)
+                czy_koniec = True
+
+        return self.pobierz_stan(id_gracza), nagroda, czy_koniec
