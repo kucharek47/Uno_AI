@@ -1,0 +1,54 @@
+--- Epizod: 285 ---
+Punkty: G3: 1983, G0: -216, G2: -409, G1: -414, G4: -1719
+Kroki do 1. miejsca: 46
+Kroki calkowite: 46
+
+Gra rozpoczyna sie od karty na stosie: niebieski stop
+Gracz 0 zagrywa: niebieski 8
+Gracz 0 konczy ture
+Gracz 1 zagrywa: +4 (wybiera kolor: zolty)
+Gracz 1 konczy ture
+Gracz 2 zagrywa: +4 (wybiera kolor: zolty)
+Gracz 2 konczy ture
+Gracz 3 zagrywa: +4 (wybiera kolor: zielony)
+Gracz 3 zagrywa: zolty +2
+Gracz 3 zagrywa: niebieski +2
+Gracz 3 konczy ture
+Gracz 4 pobiera kare: 16 kart
+Gracz 0 zagrywa: niebieski 2
+Gracz 0 konczy ture
+Gracz 1 zagrywa: niebieski 6
+Gracz 1 zagrywa: zolty 6
+Gracz 1 konczy ture
+Gracz 2 zagrywa: zmiana_koloru (wybiera kolor: zolty)
+Gracz 2 konczy ture
+Gracz 3 dobiera karte z talii
+Gracz 4 zagrywa: zolty 3
+Gracz 4 zagrywa: czerwony 3
+Gracz 4 konczy ture
+Gracz 0 zagrywa: zielony 3
+Gracz 0 konczy ture
+Gracz 1 zagrywa: zielony zmiana_kierunku
+Gracz 1 konczy ture
+Gracz 0 zagrywa: zielony 5
+Gracz 0 konczy ture
+Gracz 4 zagrywa: zielony 7
+Gracz 4 konczy ture
+Gracz 3 zagrywa: zielony 1
+Gracz 3 konczy ture
+Gracz 2 zagrywa: niebieski 1
+Gracz 2 konczy ture
+Gracz 1 dobiera karte z talii
+Gracz 0 zagrywa: zolty 1
+Gracz 0 krzyczy UNO!
+Gracz 0 konczy ture
+Gracz 4 zagrywa: zolty 4
+Gracz 4 zagrywa: czerwony 4
+Gracz 4 zagrywa: czerwony 4
+Gracz 4 konczy ture
+Gracz 3 zagrywa: czerwony 5
+Gracz 3 zagrywa: zolty 5
+Gracz 3 krzyczy UNO!
+Gracz 3 zagrywa: niebieski 5
+Gracz 3 zagrywa: niebieski 5
+!!! Gracz 3 WYGRYWA GRE !!!
