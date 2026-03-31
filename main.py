@@ -18,6 +18,8 @@ def main():
 
     if os.path.exists(path):
         startowy_epizod = agent.wczytaj_model(path)
+        if agent.epsilon < 0.1:
+            agent.epsilon = 0.1
         print(f"Wznowiono trening od epizodu {startowy_epizod}. Epsilon: {agent.epsilon:.2f}")
 
     for epizod in range(startowy_epizod, epizody):

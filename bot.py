@@ -39,7 +39,7 @@ class agent_dqn:
         self.wejscie = wejscie
         self.wyjscie = wyjscie
         self.epsilon = 1.0
-        self.epsilon_min = 0.05
+        self.epsilon_min = 0.1
         self.spadek_epsilon = 0.998
         self.gamma = 0.95
 
