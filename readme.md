@@ -12,7 +12,7 @@ Projekt implementujący popularną grę karcianą Uno wraz ze środowiskiem do u
 
 ## Skuteczność treningu
 
-Analiza logów z późniejszych etapów nauki potwierdza zdolność modelu do adaptacji i planowania taktycznego. Przykładem jest epizod 5000, w którym bot zagrał pojedynczą kartę dobierania (+2), aby zweryfikować, czy kolejny gracz ma możliwość obrony. Po upewnieniu się o braku zagrożenia, bot bezpiecznie zrzucił dwie pozostałe karty +2 w ramach dozwolonego combo, zmuszając przeciwnika do pobrania 6 kart. Takie zachowanie bezpośrednio podkreśla skuteczność zastosowanego algorytmu i wyuczonej strategii.
+Analiza logów z późniejszych etapów nauki potwierdza zdolność modelu do adaptacji i planowania taktycznego. Przykładem jest epizod 5000, w którym bot zagrał pojedynczą kartę dobierania (+4), aby zweryfikować, czy kolejny gracz ma możliwość obrony. Po upewnieniu się o braku zagrożenia, bot bezpiecznie zrzucił trzy pozostałe karty +2 w ramach dozwolonego combo, zmuszając przeciwnika do pobrania 6 kart. Takie zachowanie bezpośrednio podkreśla skuteczność zastosowanego algorytmu i wyuczonej strategii.
 
 ## Wymagania
 
