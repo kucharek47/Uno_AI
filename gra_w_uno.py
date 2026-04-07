@@ -205,9 +205,11 @@ class gra:
         return False
 
 class srodowisko_uno:
-    def __init__(self, liczba_graczy):
-        self.liczba_graczy = liczba_graczy
-        self.silnik = gra(liczba_graczy)
+    def __init__(self, max_graczy=5):
+        self.max_graczy = max_graczy
+        # Losujemy graczy przy inicjalizacji
+        self.liczba_graczy = random.randint(2, max_graczy)
+        self.silnik = gra(self.liczba_graczy)
 
     def _karta_na_indeks(self, k):
         if k.kolor is None:
@@ -258,17 +260,22 @@ class srodowisko_uno:
             historia_wektor[idx] += 1
         stan.extend(historia_wektor)
 
-        for i in range(1, self.liczba_graczy):
-            idx_przeciwnika = (id_gracza + i) % self.liczba_graczy
-            przeciwnik = self.silnik.gracze[idx_przeciwnika]
-            stan.append(len(przeciwnik.reka))
-            stan.append(1 if przeciwnik.zglasza_uno else 0)
-            stan.append(przeciwnik.pominiete_tury)
+        # Dopasowanie stanu do MAX_GRACZY - puste miejsca wypełniane zerami
+        for i in range(1, self.max_graczy):
+            if i < self.liczba_graczy:
+                idx_przeciwnika = (id_gracza + i) % self.liczba_graczy
+                przeciwnik = self.silnik.gracze[idx_przeciwnika]
+                stan.append(len(przeciwnik.reka))
+                stan.append(1 if przeciwnik.zglasza_uno else 0)
+                stan.append(przeciwnik.pominiete_tury)
+            else:
+                stan.extend([0, 0, 0])
 
         return stan
 
     def pobierz_maske_akcji(self, id_gracza):
-        maska = [0] * (63 + self.liczba_graczy)
+        # Maska zawsze ma stały rozmiar obliczony dla max_graczy
+        maska = [0] * (63 + self.max_graczy)
         g = self.silnik.gracze[id_gracza]
         ma_ruch = False
 
@@ -336,6 +343,8 @@ class srodowisko_uno:
         return 2000
 
     def resetuj(self):
+        # Losujemy liczbę graczy na nowo przed każdym epizodem
+        self.liczba_graczy = random.randint(2, self.max_graczy)
         self.silnik = gra(self.liczba_graczy)
         return self.pobierz_stan(self.silnik.aktualny_gracz)
 
@@ -360,9 +369,11 @@ class srodowisko_uno:
             return 'krzycz_uno', None, None, None
         elif numer_akcji == 62:
             return 'zakoncz_ture', None, None, None
-        elif numer_akcji < 63 + self.liczba_graczy:
-            id_celu = (id_gracza + (numer_akcji - 63)) % self.liczba_graczy
-            return 'zglos_brak_uno', None, None, id_celu
+        elif numer_akcji < 63 + self.max_graczy:
+            odleglosc = numer_akcji - 63
+            if odleglosc < self.liczba_graczy:
+                id_celu = (id_gracza + odleglosc) % self.liczba_graczy
+                return 'zglos_brak_uno', None, None, id_celu
         return None, None, None, None
 
     def wykonaj_krok(self, id_gracza, numer_akcji):

@@ -13,10 +13,10 @@ def uruchom_gui():
     czcionka = pygame.font.SysFont("arial", 28, bold=True)
     czcionka_mala = pygame.font.SysFont("arial", 18, bold=True)
 
-    liczba_graczy = 5
-    srodowisko = srodowisko_uno(liczba_graczy)
-    wielkosc_wejscia = 170 + (liczba_graczy - 1) * 3
-    wielkosc_wyjscia = 63 + liczba_graczy
+    max_graczy = 5
+    srodowisko = srodowisko_uno(max_graczy)
+    wielkosc_wejscia = 170 + (max_graczy - 1) * 3
+    wielkosc_wyjscia = 63 + max_graczy
 
     agent = agent_dqn(wielkosc_wejscia, wielkosc_wyjscia)
     try:
@@ -81,7 +81,7 @@ def uruchom_gui():
                 ostatni_ruch = pygame.time.get_ticks()
 
         pozycje_botow = [(80, h // 2 - 100), (w // 3, 40), (2 * w // 3, 40), (w - 160, h // 2 - 100)]
-        for i in range(1, liczba_graczy):
+        for i in range(1, srodowisko.liczba_graczy):
             x, y = pozycje_botow[i - 1]
             karty_bota = len(srodowisko.silnik.gracze[i].reka)
             tekst_bota = czcionka.render(f"Bot {i}", True, kolory['bialy'])

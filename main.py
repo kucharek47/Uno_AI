@@ -4,16 +4,16 @@ from bot import agent_dqn
 
 
 def main():
-    liczba_graczy = 5
-    epizody = 5000
+    max_graczy = 5
+    epizody = 6000
     path = "model_uno_v10.pth"
     startowy_epizod = 0
 
-    wielkosc_wejscia = 170 + (liczba_graczy - 1) * 3
-    wielkosc_wyjscia = 63 + liczba_graczy
+    wielkosc_wejscia = 170 + (max_graczy - 1) * 3
+    wielkosc_wyjscia = 63 + max_graczy
 
     agent = agent_dqn(wielkosc_wejscia, wielkosc_wyjscia)
-    srodowisko = srodowisko_uno(liczba_graczy)
+    srodowisko = srodowisko_uno(max_graczy)
     zapisane_logi = []
 
     if os.path.exists(path):
@@ -24,7 +24,8 @@ def main():
 
     for epizod in range(startowy_epizod, epizody):
         srodowisko.resetuj()
-        suma_nagrod = [0] * liczba_graczy
+
+        suma_nagrod = [0] * srodowisko.liczba_graczy
         licznik_krokow = 0
         kroki_pierwszego = None
 
@@ -82,18 +83,18 @@ def main():
         if agent.epsilon > agent.epsilon_min:
             agent.epsilon *= agent.spadek_epsilon
 
-        wyniki = [(i, suma_nagrod[i]) for i in range(liczba_graczy)]
+        wyniki = [(i, suma_nagrod[i]) for i in range(srodowisko.liczba_graczy)]
         wyniki_posortowane = sorted(wyniki, key=lambda x: x[1], reverse=True)
         punkty_str = ", ".join([f"G{id_g}: {pkt}" for id_g, pkt in wyniki_posortowane])
 
         kroki_wypis = kroki_pierwszego if kroki_pierwszego is not None else "Brak"
 
         print(
-            f"Epizod: {epizod + 1}, Kroki do 1. miejsca: {kroki_wypis}, Kroki calkowite: {licznik_krokow}, Punkty: [{punkty_str}], Epsilon: {agent.epsilon:.2f}")
+            f"Epizod: {epizod + 1}, Liczba graczy: {srodowisko.liczba_graczy}, Kroki do 1. miejsca: {kroki_wypis}, Kroki calkowite: {licznik_krokow}, Punkty: [{punkty_str}], Epsilon: {agent.epsilon:.2f}")
 
         nazwa_pliku = f"log_epizod_{epizod + 1}.txt"
         with open(nazwa_pliku, "w", encoding="utf-8") as plik:
-            plik.write(f"--- Epizod: {epizod + 1} ---\n")
+            plik.write(f"--- Epizod: {epizod + 1} (Graczy: {srodowisko.liczba_graczy}) ---\n")
             plik.write(f"Punkty: {punkty_str}\n")
             plik.write(f"Kroki do 1. miejsca: {kroki_wypis}\n")
             plik.write(f"Kroki calkowite: {licznik_krokow}\n\n")

@@ -1,0 +1,127 @@
+--- Epizod: 5998 (Graczy: 3) ---
+Punkty: G0: 1920, G2: -281, G1: -375
+Kroki do 1. miejsca: 119
+Kroki calkowite: 119
+
+Gra rozpoczyna sie od karty na stosie: czerwony 5
+Gracz 0 zagrywa: zielony 5
+Gracz 0 konczy ture
+Gracz 1 zagrywa: zielony 2
+Gracz 1 konczy ture
+Gracz 2 zagrywa: zmiana_koloru (wybiera kolor: zolty)
+Gracz 2 konczy ture
+Gracz 0 zagrywa: zolty 4
+Gracz 0 konczy ture
+Gracz 1 zagrywa: zolty 1
+Gracz 1 konczy ture
+Gracz 2 zagrywa: zolty 2
+Gracz 2 zagrywa: czerwony 2
+Gracz 2 konczy ture
+Gracz 0 dobiera karte z talii
+Gracz 1 zagrywa: czerwony 1
+Gracz 1 konczy ture
+Gracz 2 zagrywa: czerwony 3
+Gracz 2 konczy ture
+Gracz 0 zagrywa: zielony 3
+Gracz 0 konczy ture
+Gracz 1 zagrywa: zielony stop
+Gracz 1 konczy ture
+Gracz 2 stoi w kolejce (blokada)
+Gracz 0 zagrywa: zolty stop
+Gracz 0 konczy ture
+Gracz 1 stoi w kolejce (blokada)
+Gracz 2 zagrywa: zolty 9
+Gracz 2 krzyczy UNO!
+Gracz 2 konczy ture
+Gracz 0 zagrywa: zolty 7
+Gracz 0 konczy ture
+Gracz 1 zagrywa: zolty 8
+Gracz 1 krzyczy UNO!
+Gracz 1 konczy ture
+Gracz 2 dobiera karte z talii
+Gracz 0 zagrywa: zolty 8
+Gracz 0 krzyczy UNO!
+Gracz 0 konczy ture
+Gracz 1 dobiera karte z talii
+Gracz 2 dobiera karte z talii
+Gracz 0 dobiera karte z talii
+Gracz 1 dobiera karte z talii
+Gracz 2 dobiera karte z talii
+Gracz 0 dobiera karte z talii
+Gracz 1 dobiera karte z talii
+Gracz 2 dobiera karte z talii
+Gracz 0 zagrywa: zmiana_koloru (wybiera kolor: zolty)
+Gracz 0 konczy ture
+Gracz 1 dobiera karte z talii
+Gracz 2 zagrywa: zolty 1
+Gracz 2 konczy ture
+Gracz 0 zagrywa: niebieski 1
+Gracz 0 krzyczy UNO!
+Gracz 0 konczy ture
+Gracz 1 zagrywa: niebieski 1
+Gracz 1 konczy ture
+Gracz 2 zagrywa: niebieski 6
+Gracz 2 zagrywa: czerwony 6
+Gracz 2 konczy ture
+Gracz 0 zagrywa: czerwony 6
+Gracz 0 konczy ture
+Gracz 1 zagrywa: czerwony 5
+Gracz 1 konczy ture
+Gracz 2 zagrywa: niebieski 5
+Gracz 2 krzyczy UNO!
+Gracz 2 konczy ture
+Gracz 0 dobiera karte z talii
+Gracz 1 dobiera karte z talii
+Gracz 2 dobiera karte z talii
+Gracz 0 krzyczy UNO!
+Gracz 0 dobiera karte z talii
+Gracz 1 zagrywa: niebieski stop
+Gracz 1 konczy ture
+Gracz 2 stoi w kolejce (blokada)
+Gracz 0 zagrywa: niebieski 9
+Gracz 0 krzyczy UNO!
+Gracz 0 konczy ture
+Gracz 1 zagrywa: czerwony 9
+Gracz 1 konczy ture
+Gracz 2 zagrywa: czerwony +2
+Gracz 2 krzyczy UNO!
+Gracz 2 konczy ture
+Gracz 0 pobiera kare: 2 kart
+Gracz 1 zagrywa: zielony +2
+Gracz 1 konczy ture
+Gracz 2 pobiera kare: 2 kart
+Gracz 0 zagrywa: zielony 2
+Gracz 0 konczy ture
+Gracz 1 krzyczy UNO!
+Gracz 1 zagrywa: zielony 3
+Gracz 1 konczy ture
+Gracz 2 zagrywa: zielony 4
+Gracz 2 zagrywa: zolty 4
+Gracz 2 krzyczy UNO!
+Gracz 2 konczy ture
+Gracz 0 zagrywa: zolty zmiana_kierunku
+Gracz 0 krzyczy UNO!
+Gracz 0 konczy ture
+Gracz 2 zagrywa: +4 (wybiera kolor: zolty)
+Gracz 2 konczy ture
+Gracz 1 pobiera kare: 4 kart
+Gracz 0 dobiera karte z talii
+Gracz 2 dobiera karte z talii
+Gracz 1 zagrywa: zolty 3
+Gracz 1 konczy ture
+Gracz 0 zagrywa: zolty 0
+Gracz 0 krzyczy UNO!
+Gracz 0 konczy ture
+Gracz 2 krzyczy UNO!
+Gracz 2 dobiera karte z talii
+Gracz 1 dobiera karte z talii
+Gracz 0 zagrywa: czerwony 0
+Gracz 0 konczy ture
+Gracz 2 zagrywa: czerwony 2
+Gracz 2 krzyczy UNO!
+Gracz 2 konczy ture
+Gracz 1 zagrywa: czerwony zmiana_kierunku
+Gracz 1 zagrywa: zielony zmiana_kierunku
+Gracz 1 konczy ture
+Gracz 0 zagrywa: zielony 7
+!!! Gracz 0 WYGRYWA GRE !!!

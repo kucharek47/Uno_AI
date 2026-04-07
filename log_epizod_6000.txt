@@ -1,0 +1,175 @@
+--- Epizod: 6000 (Graczy: 5) ---
+Punkty: G3: 1931, G4: -265, G2: -354, G0: -374, G1: -476
+Kroki do 1. miejsca: 167
+Kroki calkowite: 167
+
+Gra rozpoczyna sie od karty na stosie: czerwony 7
+Gracz 0 zagrywa: +4 (wybiera kolor: zolty)
+Gracz 0 konczy ture
+Gracz 1 pobiera kare: 4 kart
+Gracz 2 zagrywa: +4 (wybiera kolor: zolty)
+Gracz 2 konczy ture
+Gracz 3 zagrywa: czerwony +2
+Gracz 3 zagrywa: niebieski +2
+Gracz 3 konczy ture
+Gracz 4 zagrywa: zielony +2
+Gracz 4 konczy ture
+Gracz 0 pobiera kare: 10 kart
+Gracz 1 zagrywa: zmiana_koloru (wybiera kolor: zolty)
+Gracz 1 konczy ture
+Gracz 2 zagrywa: zolty 8
+Gracz 2 zagrywa: czerwony 8
+Gracz 2 konczy ture
+Gracz 3 zagrywa: czerwony zmiana_kierunku
+Gracz 3 konczy ture
+Gracz 2 zagrywa: czerwony 7
+Gracz 2 konczy ture
+Gracz 1 zagrywa: zolty 7
+Gracz 1 konczy ture
+Gracz 0 zagrywa: zmiana_koloru (wybiera kolor: zolty)
+Gracz 0 zagrywa: zmiana_koloru (wybiera kolor: zolty)
+Gracz 0 konczy ture
+Gracz 4 zagrywa: zolty 4
+Gracz 4 konczy ture
+Gracz 3 dobiera karte z talii
+Gracz 2 dobiera karte z talii
+Gracz 1 zagrywa: zolty 4
+Gracz 1 konczy ture
+Gracz 0 zagrywa: zolty +2
+Gracz 0 konczy ture
+Gracz 4 pobiera kare: 2 kart
+Gracz 3 dobiera karte z talii
+Gracz 2 zagrywa: zolty 3
+Gracz 2 konczy ture
+Gracz 1 zagrywa: zolty stop
+Gracz 1 zagrywa: niebieski stop
+Gracz 1 zagrywa: zielony stop
+Gracz 1 konczy ture
+Gracz 0 zagrywa: czerwony stop
+Gracz 0 konczy ture
+Gracz 4 zagrywa: zolty stop
+Gracz 4 konczy ture
+Gracz 3 zagrywa: niebieski stop
+Gracz 3 konczy ture
+Gracz 2 stoi w kolejce (blokada)
+Gracz 1 zagrywa: niebieski 8
+Gracz 1 konczy ture
+Gracz 0 zagrywa: niebieski 7
+Gracz 0 konczy ture
+Gracz 4 dobiera karte z talii
+Gracz 3 zagrywa: +4 (wybiera kolor: zolty)
+Gracz 3 konczy ture
+Gracz 1 pobiera kare: 4 kart
+Gracz 0 zagrywa: zolty 7
+Gracz 0 konczy ture
+Gracz 4 dobiera karte z talii
+Gracz 3 dobiera karte z talii
+Gracz 1 zagrywa: zolty 1
+Gracz 1 konczy ture
+Gracz 0 zagrywa: zolty 6
+Gracz 0 konczy ture
+Gracz 4 zagrywa: zmiana_koloru (wybiera kolor: zolty)
+Gracz 4 konczy ture
+Gracz 3 zagrywa: zolty +2
+Gracz 3 konczy ture
+Gracz 1 pobiera kare: 2 kart
+Gracz 0 zagrywa: zolty zmiana_kierunku
+Gracz 0 zagrywa: zielony zmiana_kierunku
+Gracz 0 konczy ture
+Gracz 4 zagrywa: zielony zmiana_kierunku
+Gracz 4 zagrywa: czerwony zmiana_kierunku
+Gracz 4 konczy ture
+Gracz 3 zagrywa: czerwony 9
+Gracz 3 konczy ture
+Gracz 1 zagrywa: czerwony 9
+Gracz 1 konczy ture
+Gracz 0 zagrywa: czerwony 1
+Gracz 0 konczy ture
+Gracz 4 zagrywa: czerwony 2
+Gracz 4 konczy ture
+Gracz 3 dobiera karte z talii
+Gracz 1 zagrywa: zielony 2
+Gracz 1 konczy ture
+Gracz 0 zagrywa: zielony 5
+Gracz 0 zagrywa: czerwony 5
+Gracz 0 konczy ture
+Gracz 4 zagrywa: czerwony 8
+Gracz 4 konczy ture
+Gracz 3 zagrywa: czerwony 6
+Gracz 3 konczy ture
+Gracz 2 dobiera karte z talii
+Gracz 1 zagrywa: zolty 6
+Gracz 1 konczy ture
+Gracz 0 dobiera karte z talii
+Gracz 4 zagrywa: zielony 6
+Gracz 4 krzyczy UNO!
+Gracz 4 konczy ture
+Gracz 3 zagrywa: zielony 3
+Gracz 3 krzyczy UNO!
+Gracz 3 konczy ture
+Gracz 2 zagrywa: zielony 9
+Gracz 2 konczy ture
+Gracz 1 zagrywa: zielony +2
+Gracz 1 konczy ture
+Gracz 0 pobiera kare: 2 kart
+Gracz 4 dobiera karte z talii
+Gracz 3 dobiera karte z talii
+Gracz 2 dobiera karte z talii
+Gracz 1 zagrywa: zielony 1
+Gracz 1 konczy ture
+Gracz 0 zagrywa: zielony 2
+Gracz 0 konczy ture
+Gracz 4 dobiera karte z talii
+Gracz 3 dobiera karte z talii
+Gracz 2 dobiera karte z talii
+Gracz 1 zagrywa: zielony 7
+Gracz 1 konczy ture
+Gracz 0 zagrywa: zielony 8
+Gracz 0 zagrywa: zolty 8
+Gracz 0 zagrywa: niebieski 8
+Gracz 0 konczy ture
+Gracz 4 zagrywa: niebieski 3
+Gracz 4 konczy ture
+Gracz 3 zagrywa: niebieski 9
+Gracz 3 konczy ture
+Gracz 2 zagrywa: niebieski +2
+Gracz 2 konczy ture
+Gracz 1 pobiera kare: 2 kart
+Gracz 0 zagrywa: niebieski 4
+Gracz 0 krzyczy UNO!
+Gracz 0 konczy ture
+Gracz 4 dobiera karte z talii
+Gracz 3 zagrywa: niebieski 1
+Gracz 3 krzyczy UNO!
+Gracz 3 konczy ture
+Gracz 2 zagrywa: niebieski zmiana_kierunku
+Gracz 2 konczy ture
+Gracz 3 dobiera karte z talii
+Gracz 4 zagrywa: niebieski 1
+Gracz 4 konczy ture
+Gracz 0 dobiera karte z talii
+Gracz 1 dobiera karte z talii
+Gracz 2 zagrywa: niebieski 0
+Gracz 2 krzyczy UNO!
+Gracz 2 konczy ture
+Gracz 3 zagrywa: zolty 0
+Gracz 3 krzyczy UNO!
+Gracz 3 konczy ture
+Gracz 4 zagrywa: zolty 9
+Gracz 4 krzyczy UNO!
+Gracz 4 konczy ture
+Gracz 0 dobiera karte z talii
+Gracz 1 zagrywa: zolty 3
+Gracz 1 konczy ture
+Gracz 2 zagrywa: czerwony 3
+Gracz 2 konczy ture
+Gracz 3 zagrywa: czerwony stop
+Gracz 3 konczy ture
+Gracz 4 stoi w kolejce (blokada)
+Gracz 0 zagrywa: czerwony 6
+Gracz 0 konczy ture
+Gracz 1 zagrywa: czerwony +2
+Gracz 1 konczy ture
+Gracz 2 pobiera kare: 2 kart
+Gracz 3 zagrywa: czerwony 4
+!!! Gracz 3 WYGRYWA GRE !!!
